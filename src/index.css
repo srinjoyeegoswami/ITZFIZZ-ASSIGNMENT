@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  /* overflow-x: hidden; */
+}
+
+.scroll-track {
+  position: relative;
+  height: 240vh;
+}
+
+.the-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  perspective: 900px;
+}
+
+.the-stage video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+
+.welcome {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 0.8em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.75rem;
+  z-index: 10;
+  /* white-space: nowrap; */
+  height: 90px;
+  margin-top:40px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Car starts 20px from the left */
+.car-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 280px;
+}
+
+.car-body {
+  position: relative;
+  width: 100%;
+}
+
+.car-img {
+  width: 100%;
+  display: block;
+}
+
+.stats {
+  position: absolute;
+  inset: 0;
+  /* shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stat-box {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.stat-box h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.stat-box p {
+  font-size: 0.8rem;
+  color: #c8bcbc;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.stat-left {
+  top: 70px;
+  left: 70px;
+}
+
+.stat-center {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.stat-right {
+  top: 70px;
+  right: 70px;
+  text-align: right;
+}
+
+/* --- Road & Pavement --- */
+.road-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  transform: translateY(-50%);
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0.1; /* Dim at rest, brightens when scrolling */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Yellow & black alternating pavement curb */
+.pavement-curb {
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #facc15 0px,
+    #facc15 25px,
+    #1f1f1f 25px,
+    #1f1f1f 50px
+  );
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.2);
+}
+
+/* Dotted highway center line */
+.lane-divider {
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.5) 0px,
+    rgba(255, 255, 255, 0.5) 25px,
+    transparent 25px,
+    transparent 55px
+  );
+}
+
+/* --- Headlight Beam --- */
+.headlight-beam {
+  position: absolute;
+  right: -250px; /* Casts forward from the nose of the car */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 270px;
+  height: 140px;
+  background: radial-gradient(
+    ellipse at left,
+    rgba(255, 245, 160, 0.9) 0%,
+    rgba(255, 215, 60, 0.45) 40%,
+    rgba(255, 200, 40, 0) 80%
+  );
+  clip-path: polygon(0% 42%, 100% 0%, 100% 100%, 0% 58%);
+  pointer-events: none;
+  opacity: 0.25; /* Dim glow at idle */
+  filter: blur(5px);
+  mix-blend-mode: screen;
+  transform-origin: left center;
+  z-index: 10;
+}
